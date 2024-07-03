@@ -1,0 +1,40 @@
+
+//popular movies
+https://api.themoviedb.org/3/movie/popular?api_key=
+
+//now_playing movies
+https://api.themoviedb.org/3/movie/now_playing?api_key=
+
+//upcoming movies
+https://api.themoviedb.org/3/movie/upcoming?api_key=
+
+//search
+https://api.themoviedb.org/3/search/movie?query=Avengers&api_key=
+
+//similar
+https://api.themoviedb.org/3/movie/299536/similar?api_key=
+
+//images
+https://api.themoviedb.org/3/movie/299536/images?api_key=
+
+//recommendations
+https://api.themoviedb.org/3/movie/299536/recommendations?api_key=
+
+
+================================
+
+//popular tv shows
+https://api.themoviedb.org/3/tv/popular?api_key=
+
+//airing_today 
+https://api.themoviedb.org/3/tv/airing_today?api_key=
+
+//top_rated
+https://api.themoviedb.org/3/tv/top_rated?api_key=
+	
+
+
+================================
+
+//Image Base
+https://image.tmdb.org/t/p/w500/
