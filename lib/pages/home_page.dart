@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final _pages = [
     const MainPage(),
-    const NowPlaiyingPage(),
+    const NowPlayingPage(),
     const PopularMoviesPage(),
     const UpcomingMoviesPage(),
   ];
