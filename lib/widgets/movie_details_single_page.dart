@@ -59,7 +59,7 @@ class MovieDetailsSinglepage extends StatelessWidget {
               color: Colors.grey[600],
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -67,14 +67,14 @@ class MovieDetailsSinglepage extends StatelessWidget {
                 'Average Vote: ${movie.voteAverage}',
                 style: TextStyle(
                   fontSize: 14,
-                  color: Colors.grey[600],
+                  color: Colors.red[600],
                 ),
               ),
               Text(
                 'Popularity: ${movie.popularity}',
                 style: TextStyle(
                   fontSize: 14,
-                  color: Colors.grey[600],
+                  color: Colors.red[600],
                 ),
               ),
             ],

@@ -4,9 +4,9 @@ import 'package:moviestmdb/services/movie_service.dart';
 import 'package:moviestmdb/widgets/movie_details_single_page.dart';
 
 class SingleMoviePage extends StatefulWidget {
-  final Movie movie;
+  Movie movie;
 
-  const SingleMoviePage({super.key, required this.movie});
+  SingleMoviePage({super.key, required this.movie});
 
   @override
   State<SingleMoviePage> createState() => _SingleMoviePageState();
@@ -91,6 +91,10 @@ class _SingleMoviePageState extends State<SingleMoviePage> {
             children: [
               MovieDetailsSinglepage(movie: widget.movie),
               const SizedBox(
+                height: 20,
+              ),
+              Divider(),
+              const SizedBox(
                 height: 40,
               ),
               const Padding(
@@ -101,6 +105,10 @@ class _SingleMoviePageState extends State<SingleMoviePage> {
                 ),
               ),
               _buildImageSection(),
+              const SizedBox(
+                height: 20,
+              ),
+              Divider(),
               const SizedBox(
                 height: 40,
               ),
@@ -149,9 +157,12 @@ class _SingleMoviePageState extends State<SingleMoviePage> {
           return Container(
             width: 200,
             margin: const EdgeInsets.all(4.0),
-            child: Image.network(
-              _movieImages[index],
-              fit: BoxFit.cover,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.network(
+                _movieImages[index],
+                fit: BoxFit.cover,
+              ),
             ),
           );
         },
@@ -172,31 +183,57 @@ class _SingleMoviePageState extends State<SingleMoviePage> {
         scrollDirection: Axis.horizontal,
         itemCount: movies.length,
         itemBuilder: (context, index) {
-          return Container(
-            margin: const EdgeInsets.all(4.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (movies[index].posterPath != null)
-                  Expanded(
-                    child: Image.network(
-                      'https://image.tmdb.org/t/p/w500${movies[index].posterPath}',
-                      fit: BoxFit.cover,
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                widget.movie = movies[index];
+                //fetch the images and the similar movies for the selected movie
+                _fetchMovieImages();
+                _fetchSimilarMovies();
+                _fetchRecommendedMovies();
+              });
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade900,
+                borderRadius: BorderRadius.circular(2),
+              ),
+              margin: const EdgeInsets.all(4.0),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    if (movies[index].posterPath != null)
+                      Expanded(
+                        child: Image.network(
+                          'https://image.tmdb.org/t/p/w500${movies[index].posterPath}',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    const SizedBox(height: 4),
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        movies[index].title,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 12,
+                        ),
+                      ),
                     ),
-                  ),
-                const SizedBox(height: 4),
-                SizedBox(
-                  width: 100,
-                  child: Text(
-                    movies[index].title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 12,
+                    Text(
+                      'Average Vote: ${movies[index].voteAverage}',
+                      style: TextStyle(
+                        fontSize: 7,
+                        color: Colors.red[600],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           );
         },
