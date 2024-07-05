@@ -93,7 +93,7 @@ class _SingleMoviePageState extends State<SingleMoviePage> {
               const SizedBox(
                 height: 20,
               ),
-              Divider(),
+              const Divider(),
               const SizedBox(
                 height: 40,
               ),
@@ -108,18 +108,23 @@ class _SingleMoviePageState extends State<SingleMoviePage> {
               const SizedBox(
                 height: 20,
               ),
-              Divider(),
+              const Divider(),
               const SizedBox(
                 height: 40,
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'Similar Movies',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-              _buildMovieSection(_similarMovies, _isLoadingSimilar),
+              _similarMovies.isNotEmpty
+                  ? const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Similar Movies',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  : const SizedBox(),
+              _similarMovies.isNotEmpty
+                  ? _buildMovieSection(_similarMovies, _isLoadingSimilar)
+                  : const SizedBox(),
               _recommendedMovies.isNotEmpty
                   ? const Padding(
                       padding: EdgeInsets.all(8.0),
@@ -206,9 +211,12 @@ class _SingleMoviePageState extends State<SingleMoviePage> {
                   children: [
                     if (movies[index].posterPath != null)
                       Expanded(
-                        child: Image.network(
-                          'https://image.tmdb.org/t/p/w500${movies[index].posterPath}',
-                          fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(3 ),
+                          child: Image.network(
+                            'https://image.tmdb.org/t/p/w500${movies[index].posterPath}',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     const SizedBox(height: 4),

@@ -67,7 +67,9 @@ class _NowPlayingPageState extends State<NowPlayingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Now Playing Movies'),
+        title: const Text(
+          'Now Playing Movies',
+        ),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())

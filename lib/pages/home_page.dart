@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moviestmdb/pages/main_page.dart';
 import 'package:moviestmdb/pages/now_plaiying.dart';
-import 'package:moviestmdb/pages/popular_movies.dart';
-import 'package:moviestmdb/pages/upcoming_movies.dart';
+import 'package:moviestmdb/pages/tv_shows.dart';
+import 'package:moviestmdb/pages/search_movies.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,8 +16,8 @@ class _HomePageState extends State<HomePage> {
   final _pages = [
     const MainPage(),
     const NowPlayingPage(),
-    const PopularMoviesPage(),
-    const UpcomingMoviesPage(),
+    const TVShowsPage(),
+    const SearchMoviePage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -39,12 +39,12 @@ class _HomePageState extends State<HomePage> {
             label: "Now Playing",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "Popular",
+            icon: Icon(Icons.movie_creation_outlined),
+            label: "TV Shows",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Upcoming",
+            icon: Icon(Icons.search),
+            label: "Search",
           ),
         ],
         unselectedItemColor: Colors.grey,

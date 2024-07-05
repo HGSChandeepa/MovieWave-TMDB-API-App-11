@@ -113,4 +113,23 @@ class MovieService {
       return [];
     }
   }
+
+  //search movies by query
+  Future<List<Movie>> searchMovies(String query) async {
+    try {
+      final response = await http.get(Uri.parse(
+          'https://api.themoviedb.org/3/search/movie?query=$query&api_key=$_apiKey'));
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        final List<dynamic> results = data['results'];
+        return results.map((movieData) => Movie.fromJson(movieData)).toList();
+      } else {
+        throw Exception('Failed to load movies');
+      }
+    } catch (error) {
+      print('Error fetching movies: $error');
+      return [];
+    }
+  }
 }
