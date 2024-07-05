@@ -4,7 +4,7 @@
 
 ---
 
-![App](https://github.com/HGSChandeepa/Weather-API-with-Persistent-Theme/blob/main/app.png) 
+![App](https://github.com/HGSChandeepa/MovieWave-TMDB-API-App-11/blob/main/1.png) 
 
 ## Table of Contents
 
