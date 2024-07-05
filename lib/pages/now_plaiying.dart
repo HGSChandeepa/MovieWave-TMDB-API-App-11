@@ -75,13 +75,12 @@ class _NowPlayingPageState extends State<NowPlayingPage> {
               children: <Widget>[
                 Expanded(
                   child: ListView.builder(
-                    itemCount: _movies.length +
-                        1, // Add one for the pagination controls
+                    itemCount: _movies.length + 1,
                     itemBuilder: (context, index) {
-                      if (index < _movies.length) {
-                        return MovieDetailsWidget(movie: _movies[index]);
-                      } else {
+                      if (index > _movies.length - 1) {
                         return _buildPaginationControls();
+                      } else {
+                        return MovieDetailsWidget(movie: _movies[index]);
                       }
                     },
                   ),

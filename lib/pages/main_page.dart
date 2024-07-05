@@ -1,26 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moviestmdb/models/movie_model.dart';
+import 'package:moviestmdb/pages/single_movie.dart';
 import 'package:moviestmdb/services/movie_service.dart';
 import 'package:moviestmdb/widgets/movie_detail.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Popular Movies',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MainPage(),
-    );
-  }
-}
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -86,7 +68,13 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Popular Movies'),
+        title: const Text(
+          'MovieWave',
+          style: TextStyle(
+            color: Colors.redAccent,
+            fontSize: 24,
+          ),
+        ),
       ),
       body: NotificationListener<ScrollNotification>(
         onNotification: (ScrollNotification scrollInfo) {
@@ -103,7 +91,17 @@ class _MainPageState extends State<MainPage> {
               return const Center(child: CircularProgressIndicator());
             }
             final movie = _movies[index];
-            return MovieDetailsWidget(movie: movie);
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SingleMoviePage(movie: movie),
+                  ),
+                );
+              },
+              child: MovieDetailsWidget(movie: movie),
+            );
           },
         ),
       ),
